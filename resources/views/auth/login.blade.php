@@ -67,6 +67,7 @@
                         </div>
                     </form>
                     <br>
+                    {{--Loin with --
                     
                     <form method="GET" action="{{ route('facebookLogin') }}">
                         <button type="submit" class="btn btn-dark">
@@ -81,6 +82,7 @@
                         </button>
 
                     </form>
+                    --}}
                 </div>
             </div>
         </div>

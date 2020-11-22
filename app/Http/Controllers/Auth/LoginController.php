@@ -49,15 +49,15 @@ class LoginController extends Controller
 
     public function handleProviderCallback()
     {
-        $fbUser = Socialite::driver('facebook')->user();
-        $existUser=User::where('email',$fbUser->email)->first();
+        $sociliteUser = Socialite::driver('facebook')->user();
+        $existUser=User::where('email',$sociliteUser->email)->first();
         if($existUser){
             Auth::login($existUser);
             return "loggedn in by old information";
         }else{
             $user=new User;
-            $user->name=$fbUser->name;
-            $user->email=$fbUser->email;
+            $user->name=$sociliteUser->name;
+            $user->email=$sociliteUser->email;
             $user->password=bycrpt(12345);
             $user->save;
             Auth::login($user);
@@ -66,7 +66,7 @@ class LoginController extends Controller
 
     
     }
-*/
+
 public function redirectToProvider()
     {
         return Socialite::driver('google')->redirect();
@@ -75,6 +75,32 @@ public function redirectToProvider()
     {
         $user= Socialite::driver('google')->stateless()->user();
         return "done";
+        
+
+    
+    }
+    */
+
+    public function redirectToProvider($name)
+    {
+        return Socialite::driver($name)->redirect();
+    }
+    public function handleProviderCallback($name)
+    {
+        $sociliteUser= Socialite::driver($name)->stateless()->user();
+        $existUser=User::where('email',$sociliteUser->email)->first();
+        if($existUser){
+            Auth::login($existUser);
+            return "loggedn in by old information";
+        }else{
+            $user=new User;
+            $user->name=$sociliteUser->name;
+            $user->email=$sociliteUser->email;
+            $user->password=bycrpt(12345);
+            $user->save;
+            Auth::login($user);
+            return "logged in by new information";
+        }
         
 
     
