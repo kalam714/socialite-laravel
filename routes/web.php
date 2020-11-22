@@ -25,3 +25,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/login/facebook', [LoginController::class, 'redirectToProvider'])->name('facebookLogin');
 Route::get('/login/facebook/callback', [LoginController::class, 'handleProviderCallback']);
+
+//socialiteGoogle
+Route::get('/login/google', [LoginController::class, 'redirectToProvider'])->name('googleLogin');
+Route::get('/login/google/callback', [LoginController::class, 'handleProviderCallback']);

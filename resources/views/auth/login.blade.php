@@ -67,9 +67,17 @@
                         </div>
                     </form>
                     <br>
+                    
                     <form method="GET" action="{{ route('facebookLogin') }}">
                         <button type="submit" class="btn btn-dark">
                             Login With Facebook
+                        </button>
+
+                    </form>
+                   <br>
+                    <form method="GET" action="{{ route('googleLogin') }}">
+                        <button type="submit" class="btn btn-success">
+                            Login With Google+
                         </button>
 
                     </form>
